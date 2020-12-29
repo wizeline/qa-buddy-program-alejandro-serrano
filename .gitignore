@@ -8,6 +8,7 @@ lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+reports
 
 # Runtime data
 pids
@@ -69,7 +70,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+env/.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -102,3 +103,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# BrowserStack Local
+BrowserStackLocal
+
+# MacOS files
+.DS_Store
