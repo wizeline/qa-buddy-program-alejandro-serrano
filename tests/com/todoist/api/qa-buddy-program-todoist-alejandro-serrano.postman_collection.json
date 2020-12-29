@@ -1,0 +1,1327 @@
+{
+	"info": {
+		"_postman_id": "37ad8f09-7a48-42c3-8dab-46607bd4a1de",
+		"name": "qa-buddy-program-todoist-alejandro-serrano",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Positive Testing",
+					"item": [
+						{
+							"name": "Create new project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8fe4d421-66e2-4308-9a3e-44d66ee696ae",
+										"exec": [
+											"postman.setNextRequest(\"Get a project\");",
+											"",
+											"var jsonData = pm.response.json();",
+											"var id = pm.environment.set(\"project_id\", jsonData.id);",
+											"var projectName = pm.environment.get(\"project_name\");",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Project name has been successfully stored\", function () {",
+											"    pm.expect(jsonData.name).to.be.eql(projectName);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"{{project_name}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Creates a new project and return its value in a JSON format."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0c9d766f-ec56-4178-8a39-9a69ae302a68",
+										"exec": [
+											"postman.setNextRequest(\"Update a project\");",
+											"",
+											"let jsonData = pm.response.json();",
+											"let id = pm.environment.get(\"project_id\");",
+											"let projectName = pm.environment.get(\"project_name\");",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Project id is valid\", function () {",
+											"    pm.expect(jsonData.id).to.be.eql(id);",
+											"});",
+											"",
+											"pm.test(\"Project name is valid\", function () {",
+											"    pm.expect(jsonData.name).to.be.eql(projectName);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}/{{project_id}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									],
+									"path": [
+										"{{project_id}}"
+									]
+								},
+								"description": "Returns a JSON object containing a project object related to the given id."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1df5e2f6-d4dd-437e-a86f-27a91213c97d",
+										"exec": [
+											"postman.setNextRequest(\"Get all projects\");",
+											"",
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"{{updated_project_name}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}/{{project_id}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									],
+									"path": [
+										"{{project_id}}"
+									]
+								},
+								"description": "Updates the project for the given id and returns HTTP status code 204 with an empty body."
+							},
+							"response": []
+						},
+						{
+							"name": "Get all projects",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "dccf7137-94f0-4194-b45c-48dc9d5c6d7c",
+										"exec": [
+											"postman.setNextRequest(\"Delete a project\");",
+											"",
+											"let jsonData = pm.response.json();",
+											"let id = pm.environment.get('project_id');",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Project exists\", function() {",
+											"    const currentProject = jsonData.find(project => project.id === id)",
+											"    pm.expect(currentProject.id).to.be.eql(id);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									]
+								},
+								"description": "Returns JSON-encoded array containing all user projects."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "176af006-ce67-4c7e-b4b5-19c73feb93bd",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}/{{project_id}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									],
+									"path": [
+										"{{project_id}}"
+									]
+								},
+								"description": "Deletes a project and returns an empty response."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Negative Testing",
+					"item": [
+						{
+							"name": "Create new project (400)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d25c1882-459f-4c1d-89dc-7bc5216696fa",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"non_existent_field\": \"{{project_name}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									]
+								},
+								"description": "Creates a new project using a non existing field in the JSON Body. It must return a 400 Bad Request."
+							},
+							"response": []
+						},
+						{
+							"name": "Get a project (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f999e9e-8b8d-41ca-8902-27ea70f94d99",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}/{{project_id}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									],
+									"path": [
+										"{{project_id}}"
+									]
+								},
+								"description": "Try to get a non existent project. It must return a 404 (Not Found) error."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a project (400)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "87e5d128-d6ba-47f2-be26-8277d6bb1f36",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"non_existent_field\": \"{{updated_project_name}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}/{{project_id}}",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									],
+									"path": [
+										"{{project_id}}"
+									]
+								},
+								"description": "Updates the project with a bad request. It returns HTTP status code 400."
+							},
+							"response": []
+						},
+						{
+							"name": "Get all projects (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "79e972bb-9a46-4d72-813e-cc8e3b920798",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}s",
+									"host": [
+										"{{url}}{{projects_endpoint}}s"
+									]
+								},
+								"description": "Try to get all the projects with a bad endpoint. It must return a 404 Not Found error."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a project (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2dde4335-04d4-4997-9e5c-6168f8f71ba6",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{projects_endpoint}}/abcde",
+									"host": [
+										"{{url}}{{projects_endpoint}}"
+									],
+									"path": [
+										"abcde"
+									]
+								},
+								"description": "Try to delete a non-existent project. It must return a 404 Not Found error."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "Todoist Projects API Testing",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Positive Testing",
+					"item": [
+						{
+							"name": "Create a new task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7e9f4cfb-d177-477c-89fb-1ed183c5f444",
+										"exec": [
+											"postman.setNextRequest(\"Get an active task\");",
+											"",
+											"var jsonData = pm.response.json();",
+											"var id = pm.environment.set(\"task_id\", jsonData.id);",
+											"var taskContent = pm.environment.get(\"task_content\");",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Task content has been successfully stored\", function () {",
+											"    pm.expect(jsonData.content).to.be.eql(taskContent);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"content\": \"{{task_content}}\", \"due_string\": \"next Month\", \"due_lang\": \"en\", \"priority\": 1}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									]
+								},
+								"description": "Creates a new task and returns the JSON object according for it."
+							},
+							"response": []
+						},
+						{
+							"name": "Get an active task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7b89a243-740f-474f-9b7b-92088009c04f",
+										"exec": [
+											"postman.setNextRequest(\"Update a task\");",
+											"",
+											"let jsonData = pm.response.json();",
+											"let id = pm.environment.get(\"task_id\");",
+											"let taskContent = pm.environment.get(\"task_content\");",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Task id is valid\", function () {",
+											"    pm.expect(jsonData.id).to.be.eql(id);",
+											"});",
+											"",
+											"pm.test(\"Task name is valid\", function () {",
+											"    pm.expect(jsonData.content).to.be.eql(taskContent);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}"
+									]
+								},
+								"description": "Returns an active (non-completed) task by id."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5a20a7f6-4448-4f52-97db-dc85130609a3",
+										"exec": [
+											"postman.setNextRequest(\"Get active tasks\");",
+											"",
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"content\": \"{{updated_task_content}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}"
+									]
+								},
+								"description": "Updates a task and returns an empty body with the HTTP status code 204."
+							},
+							"response": []
+						},
+						{
+							"name": "Get active tasks",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7fb13038-ef99-48b0-9be0-8141a130e72c",
+										"exec": [
+											"postman.setNextRequest(\"Close a task\");",
+											"",
+											"let jsonData = pm.response.json();",
+											"let taskContent = pm.environment.get('updated_task_content');",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Task exists\", function() {",
+											"    const currentTask = jsonData.find(task => task.content === taskContent)",
+											"    pm.expect(currentTask.content).to.be.eql(taskContent);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									]
+								},
+								"description": "Returns a JSON-encoded array containing all user active tasks."
+							},
+							"response": []
+						},
+						{
+							"name": "Close a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4fd35bbf-d1c7-4bcb-91c9-ccee8134d0a7",
+										"exec": [
+											"postman.setNextRequest(\"Reopen a task\");",
+											"",
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}/close",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}",
+										"close"
+									]
+								},
+								"description": "Closes a task and returns an empty body with a HTTP status code 204."
+							},
+							"response": []
+						},
+						{
+							"name": "Reopen a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1f1a52a5-b480-4228-8c98-aadba9841e5e",
+										"exec": [
+											"postman.setNextRequest(\"Delete a task\");",
+											"",
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}/reopen",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}",
+										"reopen"
+									]
+								},
+								"description": "Reopens a task and returns an empty body with a HTTP status code 204."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d94f8550-17b6-4478-b8fc-27937fa2e00f",
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}"
+									]
+								},
+								"description": "Deletes a task and returns an empty body with a HTTP status 204."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Negative Testing",
+					"item": [
+						{
+							"name": "Create a new task (400)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6ec004df-76d6-40d0-b52f-b70576b92d03",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"non_existing_field\": \"{{task_content}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									]
+								},
+								"description": "Creates a new task using a non existing field in the JSON Body. It must return a 400 Bad Request."
+							},
+							"response": []
+						},
+						{
+							"name": "Get an active task (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "31ea7056-4437-49b0-ada2-6b3f20407974",
+										"exec": [
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}"
+									]
+								},
+								"description": "Try to get a non existent task. It must return a 404 (Not Found) error."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a task (400)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "99a30231-f2d7-4401-ac5b-cafb11809967",
+										"exec": [
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"non_existent_field\": \"{{updated_task_content}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}"
+									]
+								},
+								"description": "Updates a task with a bad request. It returns HTTP status code 400."
+							},
+							"response": []
+						},
+						{
+							"name": "Get active tasks (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4cf3f02f-b6b8-406e-8eec-1bccc2e45127",
+										"exec": [
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}s",
+									"host": [
+										"{{url}}{{tasks_endpoint}}s"
+									]
+								},
+								"description": "Try to get all the active tasks with a bad endpoint. It must return a 404 Not Found error."
+							},
+							"response": []
+						},
+						{
+							"name": "Close a task (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cd90b194-1d22-47d6-94a5-48e9130c7702",
+										"exec": [
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}/closes",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}",
+										"closes"
+									]
+								},
+								"description": "Try to close a task with a bad endpoint. It must return a 404 Not Found error."
+							},
+							"response": []
+						},
+						{
+							"name": "Reopen a task (400)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6f1a02d-3fee-48f4-9436-186daf8ecf95",
+										"exec": [
+											"",
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/{{task_id}}/reopen",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"{{task_id}}",
+										"reopen"
+									]
+								},
+								"description": "Try to reopen a non-existent task. It must return a 400 Not Found error."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a task (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4ef544b9-a41f-4c82-85ea-ea52682f9921",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 1s\", function () {",
+											"   pm.expect(pm.response.responseTime).to.be.below(1000); ",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{api_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}{{tasks_endpoint}}/abcde",
+									"host": [
+										"{{url}}{{tasks_endpoint}}"
+									],
+									"path": [
+										"abcde"
+									]
+								},
+								"description": "Try to delete a non-existent task. It must return a 404 Not Found error."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "Todoist Tasks API Testing",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
