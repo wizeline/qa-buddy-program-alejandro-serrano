@@ -54,5 +54,11 @@ pipeline {
                 sh "npm run backend-publish-report"
             }
         }
+
+        stage("build-notification") {
+            steps {
+                slackSend color: '#576675', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            }
+        }
     }
 }
