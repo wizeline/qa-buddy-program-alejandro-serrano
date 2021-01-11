@@ -7,12 +7,14 @@
     "clean": "rm -rf reports/**",
     "lint": "eslint . --ext js",
     "frontend-chrome": "testcafe chrome tests/com/todoist/**/*.js",
+    "frontend-chrome-headless": "testcafe chrome:headless tests/com/todoist/**/*.js",
     "frontend-firefox": "testcafe firefox tests/com/todoist/**/*.js",
+    "frontend-firefox-headless": "testcafe firefox:headless tests/com/todoist/**/*.js",
     "frontend-gen-report": "allure generate reports/frontend/allure-results --clean -o reports/frontend/allure-report",
     "frontend-publish-report": "allure open reports/frontend/allure-report",
     "backend": "newman run tests/com/todoist/api/qa-buddy-program-todoist-alejandro-serrano.postman_collection.json -e tests/com/todoist/api/qa-buddy-program-todoist-alejandro-serrano-env.postman_environment.json -r allure --reporter-allure-export reports/backend/allure-results",
     "backend-gen-report": "allure generate reports/backend/allure-results --clean -o reports/backend/allure-report",
-    "backend-publish-report": "allure open reports/backend/allure-report"    
+    "backend-publish-report": "allure open reports/backend/allure-report"
   },
   "keywords": [
     "TestCafe"
@@ -31,5 +33,8 @@
     "testcafe": "^1.9.4",
     "testcafe-browser-provider-browserstack": "^1.13.2-alpha.1",
     "testcafe-reporter-allure": "^1.0.5"
+  },
+  "devDependencies": {
+    "sonarqube-scanner": "^2.8.0"
   }
 }
