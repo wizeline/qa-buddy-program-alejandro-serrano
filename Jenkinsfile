@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo "======== init ========"
                 checkout([$class: 'GitSCM', 
-                          branches: [[name: '*/develop']],
+                          branches: scm.branches,
                           doGenerateSubmoduleConfigurations: false,
                           extensions: [],
                           submoduleCfg: [],
