@@ -19,10 +19,16 @@ pipeline {
             }
         }
         stage("sonarqube") {
-            step {
-                def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                withCredentials([string(credentialsId: 'sonar', variable: 'sonarLogin')]) {
-                    sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin}"
+            environment {
+                scannerHome = tool 'sonar'
+            }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
