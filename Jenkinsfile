@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage("init") {
+        stage("Init: Cleanup Environment and Run ESLint") {
             steps {
                 echo "======== init ========"
                 checkout([$class: 'GitSCM', 
@@ -23,7 +23,7 @@ pipeline {
                 sh 'npm run lint'
             }
         }
-        stage("sonarqube") {
+        stage("Quality Gate: SonarQube") {
             environment {
                 scannerHome = tool 'sonar'
             }
@@ -38,38 +38,38 @@ pipeline {
             }
         }
 
-        stage("backend-tests") {
+        stage("Backend: Run Backend Tests") {
             steps {
                 echo "======== backend-tests ========"
                 sh "npm run backend"
             }
         }
 
-        stage("generate-and-publish-backend-results") {
+        stage("Backend Test Results: Generate and Publish Backend Test Results") {
             steps {
                 echo "======== backend-results ========"
                 sh "npm run backend-gen-report"
-                sh "npm run backend-publish-report"
+                allure includeProperties: false, jdk: '', results: [[path: 'reports/backend/allure-results']]
             }
         }
 
-        stage("frontend-tests") {
+        stage("Frontend: Run Frontend Tests") {
             steps {
                 echo "======== frontend-tests ========"
                 sh "npm run frontend-chrome-headless"
             }
         }
 
-        stage("generate-and-publish-frontend-results") {
+        stage("Frontend Test Results: Generate And Publish Frontend Test Results") {
             steps {
                 echo "======== frontend-results ========"
-                sh "npm run backend-gen-report"
-                sh "npm run backend-publish-report"
+                sh "npm run frontend-gen-report"
+                allure includeProperties: false, jdk: '', results: [[path: 'reports/frontend/allure-results']]
             }
         }
 
-        stage("build-notification") {
-            steps {
+        post {
+            always {
                 slackSend color: '#576675', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
             }
         }
