@@ -23,6 +23,7 @@ pipeline {
                 sh 'npm run lint'
             }
         }
+
         stage("Quality Gate: SonarQube") {
             environment {
                 scannerHome = tool 'sonar'
@@ -67,11 +68,19 @@ pipeline {
                 allure includeProperties: false, jdk: '', results: [[path: 'reports/frontend/allure-results']]
             }
         }
+    }
 
-        post {
-            always {
-                slackSend color: '#576675', message: "Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
-            }
+    post {
+        success {
+            slackSend color: '#1ABC9C', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+        }
+
+        unstable {
+            slackSend color: '#5D6D7E', message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+        }
+
+        failure {
+            slackSend color: '#CD5C5C', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
         }
     }
 }
