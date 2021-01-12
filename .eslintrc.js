@@ -17,5 +17,12 @@ module.exports = {
         'eqeqeq': 'off',
         'curly': 'error',
         'quotes': ['error', 'single']
-    }
+    },
+    'overrides': [
+        {
+            'files': ['reports/*.*', 'allure-report/*.*'],
+            'rules': {
+            }
+        }
+    ]
 };
