@@ -1,0 +1,5 @@
+reports/
+allure/
+allure-results/
+allure-report/
+tests/com/todoist/api/
