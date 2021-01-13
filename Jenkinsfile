@@ -55,6 +55,11 @@ pipeline {
         }
 
         stage("Frontend: Run Frontend Tests") {
+            environment {
+                TODOIST_CREDS = credentials('todoist-credentials')
+                TODOIST_USER = "$TODOIST_CREDS_USR"
+                TODOIST_PASSWORD = "$TODOIST_CREDS_PSW"
+            }
             steps {
                 echo "======== frontend-tests ========"
                 sh "npm run frontend-chrome-headless"
