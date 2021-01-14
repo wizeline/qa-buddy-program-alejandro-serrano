@@ -61,8 +61,10 @@ pipeline {
                 TODOIST_PASSWORD = "$TODOIST_CREDS_PSW"
             }
             steps {
-                echo "======== frontend-tests ========"
-                sh "npm run frontend-chrome-headless"
+                catchError(stageResult: 'FAILURE', buildResult: 'SUCCESS') {
+                    echo "======== frontend-tests ========"
+                    sh "npm run frontend-chrome-headless"
+                }
             }
         }
 
