@@ -50,7 +50,7 @@ pipeline {
             steps {
                 echo "======== backend-results ========"
                 sh "npm run backend-gen-report"
-                allure includeProperties: false, jdk: '', results: [[path: 'reports/backend/allure-results']]
+                allure includeProperties: false, jdk: '', report: 'reports/backend/allure-report', results: [[path: 'reports/backend/allure-results']]
             }
         }
 
@@ -72,7 +72,7 @@ pipeline {
             steps {
                 echo "======== frontend-results ========"
                 sh "npm run frontend-gen-report"
-                allure includeProperties: false, jdk: '', results: [[path: 'reports/frontend/allure-results']]
+                allure includeProperties: false, jdk: '', report: 'reports/frontend/allure-report', results: [[path: 'reports/frontend/allure-results']]
             }
         }
     }
