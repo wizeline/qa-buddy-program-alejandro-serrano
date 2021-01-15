@@ -25,7 +25,7 @@ test('Add Single Task', async t => {
 });
 
 TASKS_DATA.forEach(task => {
-    test(`Data-Driven Test ${task.id} - Add '${task.task_description}' Task`, async t => {
+    test.skip(`Data-Driven Test ${task.id} - Add '${task.task_description}' Task`, async t => {
         let taskName = task.id + ' - ' + task.task_description;
         await DashboardPage.addTaskFromInbox(taskName);
         await t.expect(await DashboardPage.isTaskInTaskInboxItemsList(taskName)).ok();
