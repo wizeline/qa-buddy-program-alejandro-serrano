@@ -52,18 +52,18 @@ pipeline {
                 sh "npm run backend"
             }
         }
-
+/*
         stage("Backend Test Results: Generate and Publish Backend Test Results") {
             steps {
                 echo "======== backend-results ========"
                 sh "npm run backend-gen-report"
-                allure commandline: 'allure',
+                allure commandline: 'allure-backend',
                        includeProperties: false,
                        jdk: '',
                        report: 'reports/backend/allure-report',
                        results: [[path: 'reports/backend/allure-results']]
             }
-        }
+        }*/
 
         stage("Frontend: Run Frontend Tests") {
             environment {
@@ -82,12 +82,12 @@ pipeline {
         stage("Frontend Test Results: Generate And Publish Frontend Test Results") {
             steps {
                 echo "======== frontend-results ========"
-                sh "npm run frontend-gen-report"
+//                sh "npm run frontend-gen-report"
                 allure commandline: 'allure',
                        includeProperties: false,
                        jdk: '',
-                       report: 'reports/frontend/allure-report',
-                       results: [[path: 'reports/frontend/allure-results']]
+                       report: 'reports/allure-report',
+                       results: [[path: 'reports/frontend/allure-results'], [path: 'reports/backend/allure-results']]
             }
         }
     }
