@@ -57,7 +57,7 @@ pipeline {
             steps {
                 echo "======== backend-results ========"
                 sh "npm run backend-gen-report"
-                allure commandline: 'allure', includeProperties: false, jdk: '', report: 'reports/backend/allure-report', results: [[path: 'reports/backend/allure-results']]
+                //allure commandline: 'allure', includeProperties: false, jdk: '', report: 'reports/backend/allure-report', results: [[path: 'reports/backend/allure-results']]
             }
         }
 
