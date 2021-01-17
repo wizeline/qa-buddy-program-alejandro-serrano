@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Projects",
+			"name": "API - Projects",
 			"item": [
 				{
 					"name": "Positive Testing",
@@ -17,7 +17,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8fe4d421-66e2-4308-9a3e-44d66ee696ae",
 										"exec": [
 											"postman.setNextRequest(\"Get a project\");",
 											"",
@@ -94,7 +93,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0c9d766f-ec56-4178-8a39-9a69ae302a68",
 										"exec": [
 											"postman.setNextRequest(\"Update a project\");",
 											"",
@@ -155,7 +153,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1df5e2f6-d4dd-437e-a86f-27a91213c97d",
 										"exec": [
 											"postman.setNextRequest(\"Get all projects\");",
 											"",
@@ -213,7 +210,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "dccf7137-94f0-4194-b45c-48dc9d5c6d7c",
 										"exec": [
 											"postman.setNextRequest(\"Delete a project\");",
 											"",
@@ -267,7 +263,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "176af006-ce67-4c7e-b4b5-19c73feb93bd",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -308,9 +303,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Negative Testing",
@@ -321,7 +314,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d25c1882-459f-4c1d-89dc-7bc5216696fa",
 										"exec": [
 											"pm.test(\"Status code is 400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -374,7 +366,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3f999e9e-8b8d-41ca-8902-27ea70f94d99",
 										"exec": [
 											"pm.test(\"Status code is 404\", function () {",
 											"    pm.response.to.have.status(404);",
@@ -421,7 +412,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "87e5d128-d6ba-47f2-be26-8277d6bb1f36",
 										"exec": [
 											"pm.test(\"Status code is 400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -477,7 +467,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "79e972bb-9a46-4d72-813e-cc8e3b920798",
 										"exec": [
 											"pm.test(\"Status code is 404\", function () {",
 											"    pm.response.to.have.status(404);",
@@ -521,7 +510,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2dde4335-04d4-4997-9e5c-6168f8f71ba6",
 										"exec": [
 											"pm.test(\"Status code is 404\", function () {",
 											"    pm.response.to.have.status(404);",
@@ -562,16 +550,13 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
-			"description": "Todoist Projects API Testing",
-			"protocolProfileBehavior": {}
+			"description": "Todoist Projects API Testing"
 		},
 		{
-			"name": "Tasks",
+			"name": "API - Tasks",
 			"item": [
 				{
 					"name": "Positive Testing",
@@ -582,7 +567,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7e9f4cfb-d177-477c-89fb-1ed183c5f444",
 										"exec": [
 											"postman.setNextRequest(\"Get an active task\");",
 											"",
@@ -645,7 +629,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7b89a243-740f-474f-9b7b-92088009c04f",
 										"exec": [
 											"postman.setNextRequest(\"Update a task\");",
 											"",
@@ -706,7 +689,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5a20a7f6-4448-4f52-97db-dc85130609a3",
 										"exec": [
 											"postman.setNextRequest(\"Get active tasks\");",
 											"",
@@ -764,7 +746,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7fb13038-ef99-48b0-9be0-8141a130e72c",
 										"exec": [
 											"postman.setNextRequest(\"Close a task\");",
 											"",
@@ -818,7 +799,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4fd35bbf-d1c7-4bcb-91c9-ccee8134d0a7",
 										"exec": [
 											"postman.setNextRequest(\"Reopen a task\");",
 											"",
@@ -868,7 +848,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1f1a52a5-b480-4228-8c98-aadba9841e5e",
 										"exec": [
 											"postman.setNextRequest(\"Delete a task\");",
 											"",
@@ -918,7 +897,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d94f8550-17b6-4478-b8fc-27937fa2e00f",
 										"exec": [
 											"pm.test(\"Status code is 204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -959,9 +937,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Negative Testing",
@@ -972,7 +948,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6ec004df-76d6-40d0-b52f-b70576b92d03",
 										"exec": [
 											"pm.test(\"Status code is 400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -1025,7 +1000,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "31ea7056-4437-49b0-ada2-6b3f20407974",
 										"exec": [
 											"",
 											"pm.test(\"Status code is 404\", function () {",
@@ -1073,7 +1047,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "99a30231-f2d7-4401-ac5b-cafb11809967",
 										"exec": [
 											"",
 											"pm.test(\"Status code is 400\", function () {",
@@ -1130,7 +1103,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4cf3f02f-b6b8-406e-8eec-1bccc2e45127",
 										"exec": [
 											"",
 											"pm.test(\"Status code is 404\", function () {",
@@ -1175,7 +1147,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "cd90b194-1d22-47d6-94a5-48e9130c7702",
 										"exec": [
 											"",
 											"pm.test(\"Status code is 404\", function () {",
@@ -1224,7 +1195,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b6f1a02d-3fee-48f4-9436-186daf8ecf95",
 										"exec": [
 											"",
 											"pm.test(\"Status code is 400\", function () {",
@@ -1273,7 +1243,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4ef544b9-a41f-4c82-85ea-ea52682f9921",
 										"exec": [
 											"pm.test(\"Status code is 404\", function () {",
 											"    pm.response.to.have.status(404);",
@@ -1314,14 +1283,10 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
-			"description": "Todoist Tasks API Testing",
-			"protocolProfileBehavior": {}
+			"description": "Todoist Tasks API Testing"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
