@@ -1,8 +1,14 @@
 ## Wizeline QA Buddy Program - Alejandro Serrano
 This repository contains the implementation of a Proof of concept which includes backend and frontend automated test cases. This excercise is part of the QA Buddy Program at Wizeline. The intention of the challenge is to learn new technologies and apply our knowledge as well.
 
-## Table of contents
-
+### Table of contents
+ * [Getting Started](#getting-started)<br>
+ * [Cleaning up the environment](#cleaning-up-the-environment)<br>
+ * [Lint your code](#lint-your-code)<br>
+ * [Running the backend tests](#running-the-backend-tests)<br>
+ * [Backend demo](#backend-demo)<br>
+ * [Running the frontend tests](#running-the-frontend-tests)<br>
+ * [Frontend demo](#frontend-demo)<br>
 
 ### Getting Started
 1. Ensure that [Node.js](https://nodejs.org/en/) and npm are installed on your computer.
@@ -42,7 +48,7 @@ npm run backend-gen-report
 npm run backend-publish-report
 ```
 
-### Demo
+### Backend demo
 
 
 ### Running the frontend tests
@@ -59,4 +65,4 @@ npm run frontend-gen-report
 npm run backend-publish-report
 ```
 
-### Demo
+### Frontend demo
