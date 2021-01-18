@@ -49,7 +49,7 @@ npm run backend-publish-report
 ```
 
 ### Backend demo
-
+![](demo/demo-backend.gif)
 
 ### Running the frontend tests
 1. Run the following command to execute the frontend tests.
@@ -66,3 +66,4 @@ npm run backend-publish-report
 ```
 
 ### Frontend demo
+![](demo/demo-frontend.gif)
