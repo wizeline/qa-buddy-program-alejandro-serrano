@@ -22,10 +22,6 @@ test('Add Single Task', async t => {
     await t.useRole(user);
     await DashboardPage.addTaskFromInbox(TASK_NAME);
     await t.expect(await DashboardPage.isTaskInTaskInboxItemsList(TASK_NAME)).ok();
-})
-.after(async t => {
-    await DashboardPage.deleteTaskFromInbox(TASK_NAME);
-    await t.expect(await DashboardPage.isTaskInTaskInboxItemsList(TASK_NAME)).notOk();
 });
 
 test('Add multiple tasks', async t => {
