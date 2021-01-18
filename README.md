@@ -52,6 +52,10 @@ npm run backend-publish-report
 ![](demo/demo-backend.gif)
 
 ### Running the frontend tests
+
+Prerequisite:
+* Make sure to follow the instructions in the env/.env_template file to provide your todoist credentials before running the test cases.
+
 1. Run the following command to execute the frontend tests.
 ```
 npm run frontend
