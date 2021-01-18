@@ -1,5 +1,5 @@
 ## Wizeline QA Buddy Program - Alejandro Serrano
-This repository contains the implementation of a Proof of concept which includes backend and frontend automated test cases. This excercise is part of the QA Buddy Program at Wizeline. The intention of the challenge is to learn new technologies and apply our knowledge as well.
+This repository contains the implementation of a Proof of concept which includes backend and frontend automated test cases. The System Under Test is the [Todoist](https://todoist.com/) website. This excercise is part of the QA Buddy Program at Wizeline. The intention of the challenge is to learn new technologies, apply our knowledge, and have fun.
 
 ### Table of contents
  * [Getting Started](#getting-started)<br>
@@ -33,6 +33,7 @@ npm run clean
 ```
 npm run lint
 ```
+2. An ESLint report in HTML will be generated at the following path within your project: `qa-buddy-program-alejandro-serrano/reports/eslint/eslint.html`
 
 ### Running the backend tests
 1. Run the following command to execute the backend tests.
@@ -54,7 +55,7 @@ npm run backend-publish-report
 ### Running the frontend tests
 
 Prerequisite:
-* Make sure to follow the instructions in the env/.env_template file to provide your todoist credentials before running the test cases.
+* Make sure to follow the instructions in the `env/.env_template` file to provide your todoist credentials before running the test cases.
 
 1. Run the following command to execute the frontend tests.
 ```
