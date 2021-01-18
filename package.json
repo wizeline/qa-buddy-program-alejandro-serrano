@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf reports/**",
-    "lint": "mkdir -p 'reports/eslint' && eslint --ext js -f html . > reports/eslint/eslint.html",
+    "lint": "mkdir -p 'reports/eslint' && eslint --ext js -f html . > reports/eslint/eslint.html || true",
     "frontend-chrome": "testcafe chrome tests/com/todoist/**/*.js --reporter allure",
     "frontend-chrome-headless": "testcafe chrome:headless tests/com/todoist/**/*.js --reporter allure",
     "frontend-firefox": "testcafe firefox tests/com/todoist/**/*.js --reporter allure",
