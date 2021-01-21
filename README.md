@@ -12,6 +12,7 @@ Wiki: Still Under Construction...
  * [Backend demo](#backend-demo)<br>
  * [Running the frontend tests](#running-the-frontend-tests)<br>
  * [Frontend demo](#frontend-demo)<br>
+ * [High level tools interaction](#high-level-tools-interaction)
 
 ## Getting Started
 1. Ensure that [Node.js](https://nodejs.org/en/) and npm are installed on your computer.
@@ -75,3 +76,6 @@ npm run backend-publish-report
 
 ## Frontend demo
 ![](demo/demo-frontend.gif)
+
+## High level tools interaction
+![](demo/high-level-tools-interaction.png)
