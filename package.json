@@ -1,0 +1,41 @@
+{
+  "name": "qa-buddy-program-alejandro-serrano",
+  "version": "1.0.0",
+  "description": "QA Buddy Onboarding Challenge",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf reports/**",
+    "lint": "mkdir -p 'reports/eslint' && eslint --ext js -f html . > reports/eslint/eslint.html || true",
+    "frontend-chrome": "testcafe chrome tests/com/todoist/**/*.js --reporter allure",
+    "frontend-chrome-headless": "testcafe chrome:headless tests/com/todoist/**/*.js --reporter allure",
+    "frontend-firefox": "testcafe firefox tests/com/todoist/**/*.js --reporter allure",
+    "frontend-firefox-headless": "testcafe firefox:headless tests/com/todoist/**/*.js --reporter allure",
+    "frontend-gen-report": "allure generate reports/frontend/allure-results --clean -o reports/frontend/allure-report",
+    "frontend-publish-report": "allure open reports/frontend/allure-report",
+    "backend": "newman run tests/com/todoist/api/qa-buddy-program-todoist-alejandro-serrano.postman_collection.json -e tests/com/todoist/api/qa-buddy-program-todoist-alejandro-serrano-env.postman_environment.json -r allure --reporter-allure-export reports/backend/allure-results || true",
+    "backend-gen-report": "allure generate reports/backend/allure-results --clean -o reports/backend/allure-report",
+    "backend-publish-report": "allure open reports/backend/allure-report"
+  },
+  "keywords": [
+    "TestCafe"
+  ],
+  "author": "Alejandro Serrano",
+  "license": "ISC",
+  "dependencies": {
+    "allure-commandline": "^2.13.0",
+    "babel-eslint": "^10.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.14.0",
+    "eslint-plugin-testcafe": "^0.2.1",
+    "faker": "^5.1.0",
+    "newman": "^5.2.1",
+    "newman-reporter-allure": "^1.0.7",
+    "testcafe": "^1.9.4",
+    "testcafe-browser-provider-browserstack": "^1.13.2-alpha.1",
+    "testcafe-reporter-allure": "^1.0.5",
+    "testcafe-reporter-allure-expanded": "^1.1.0"
+  },
+  "devDependencies": {
+    "sonarqube-scanner": "^2.8.0"
+  }
+}
