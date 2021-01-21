@@ -1,7 +1,7 @@
 ## Wizeline QA Buddy Program - Alejandro Serrano
 This repository contains the implementation of a Proof of concept which includes backend and frontend automated test cases. The System Under Test is the [Todoist](https://todoist.com/) website. This excercise is part of the QA Buddy Program at Wizeline. The intention of the challenge is to learn new technologies, apply our knowledge, and have fun.
 
-Presentation: [QA Buddy Program - Alejandro Serrano](https://slides.com/alejandro-serrano/wizeline-qa-buddy-program/fullscreen)<br>
+Presentation: [QA Buddy Program - Alejandro Serrano](https://slides.com/alejandro-serrano/wizeline-qa-buddy-program/fullscreen) (Hint: use your keyboard arrow keys to navigate through the presentation)<br>
 Wiki: Still Under Construction...
 
 ## Table of contents
